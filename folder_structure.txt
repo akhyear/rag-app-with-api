@@ -1,0 +1,28 @@
+math-ai-agent/
+├── backend/
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── main.py              # FastAPI app and routes
+│   │   ├── config.py            # Configuration (Supabase URL, key, env vars)
+│   │   ├── database.py          # Supabase client initialization
+│   │   ├── models.py            # Pydantic models for request/response validation
+│   │   ├── rag.py               # Wrapper for langchain_rag.py functions
+│   │   └── utils.py             # Utility functions (e.g., title generation)
+│   ├── langchain_rag.py         # Your existing RAG function
+│   ├── requirements.txt         # Python dependencies
+│   ├── .env                     # Environment variables (Supabase URL, key)
+│   └── Dockerfile               # Docker configuration for backend
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Sidebar.js       # Sidebar for chat sessions
+│   │   │   ├── ChatPanel.js     # Main panel for messages
+│   │   │   └── MessageInput.js  # Text input for sending messages
+│   │   ├── App.js               # Main React app
+│   │   ├── index.js             # React entry point
+│   │   └── api.js               # API calls to backend
+│   ├── public/
+│   ├── package.json             # Node dependencies
+│   └── Dockerfile               # Docker configuration for frontend
+├── docker-compose.yml           # Orchestrates backend and frontend
+└── README.md                    # Project documentation
