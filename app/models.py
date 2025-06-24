@@ -1,22 +1,21 @@
 from pydantic import BaseModel
 from uuid import UUID
-from datetime import datetime
-from typing import Literal
+from typing import Optional
 
 class MessageCreate(BaseModel):
-    session_id: UUID
+    session_id: Optional[UUID] = None
     content: str
 
 class MessageResponse(BaseModel):
-    message_id: UUID
+    id: int
     session_id: UUID
-    sender_type: Literal["user", "ai"]
+    sender_type: str
     content: str
-    created_at: datetime
+    created_at: str
 
 class SessionResponse(BaseModel):
     session_id: UUID
     user_id: UUID
-    title: str | None
-    created_at: datetime
-    updated_at: datetime
+    title: Optional[str]
+    created_at: str
+    updated_at: str

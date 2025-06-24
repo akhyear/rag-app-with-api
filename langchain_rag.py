@@ -120,6 +120,6 @@ def retrieve_answers(query):
         raise RuntimeError(f"Failed to retrieve answer: {str(e)}")
 
 # # Test
-query = "Name of rafin wife"
-answer = retrieve_answers(query)
-print(f"Answer: {answer}")
+# query = "Name of rafin wife"
+# answer = retrieve_answers(query)
+# print(f"Answer: {answer}")
