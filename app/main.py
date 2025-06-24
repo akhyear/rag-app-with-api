@@ -76,7 +76,8 @@ async def send_message(message: MessageCreate, user_id: str = "00000000-0000-000
     user_message = supabase.table("chat_messages").insert({
         "session_id": str(session_id),
         "sender_type": "user",
-        "content": message.content
+        "content": message.content,
+        "created_at": datetime.utcnow().isoformat()
     }).execute().data[0]
 
     # Generate AI response
@@ -86,7 +87,8 @@ async def send_message(message: MessageCreate, user_id: str = "00000000-0000-000
     ai_message = supabase.table("chat_messages").insert({
         "session_id": str(session_id),
         "sender_type": "ai",
-        "content": ai_response_content
+        "content": ai_response_content,
+        "created_at": datetime.utcnow().isoformat()
     }).execute().data[0]
 
     # Update session title if first message or title is None
@@ -96,4 +98,4 @@ async def send_message(message: MessageCreate, user_id: str = "00000000-0000-000
 
     return ai_message
 
-# python -m uvicorn main:app --reload
+# python -m uvicorn app.main:app --reload
