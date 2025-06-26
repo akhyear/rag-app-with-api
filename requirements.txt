@@ -12,3 +12,5 @@ pinecone-client
 pypdf
 sentence-transformers
 pydantic
+langchain_community
+PyPDF2
