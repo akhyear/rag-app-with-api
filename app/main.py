@@ -8,6 +8,8 @@ from .utils import generate_session_title
 from uuid import UUID, uuid4
 from typing import List, Optional
 from datetime import datetime
+import uvicorn  # Added for running the server
+import os  # Added for environment variable access
 
 app = FastAPI()
 # security = HTTPBearer()
@@ -98,4 +100,6 @@ async def send_message(message: MessageCreate, user_id: str = "00000000-0000-000
 
     return ai_message
 
-# python -m uvicorn app.main:app --reload
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Use Render's PORT or default to 8000
+    uvicorn.run(app, host="0.0.0.0", port=port)
