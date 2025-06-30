@@ -1,9 +1,9 @@
 from fastapi import FastAPI, Depends, HTTPException, status, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from supabase import Client
-from .database import supabase
-from .models import MessageCreate, MessageResponse, SessionResponse
-from .langchain_rag import get_rag_service, RAGService
+from app.database import supabase
+from app.models import MessageCreate, MessageResponse, SessionResponse
+from app.langchain_rag import get_rag_service, RAGService
 from uuid import UUID, uuid4
 from typing import List, Optional, Dict, Any
 from datetime import datetime
@@ -276,5 +276,15 @@ async def rag_stats():
         raise HTTPException(status_code=500, detail=f"Failed to get stats: {str(e)}")
 
 if __name__ == "__main__":
+    # Get port from environment variable or default to 8000
     port = int(os.environ.get("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    host = os.environ.get("HOST", "0.0.0.0")
+    
+    logger.info(f"Starting server on {host}:{port}")
+    uvicorn.run(
+        "main:app",
+        host=host,
+        port=port,
+        reload=False,  # Set to False for production
+        log_level="info"
+    )
