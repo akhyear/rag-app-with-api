@@ -1,2 +1,2 @@
 python -m app.main --reload
-python -m uvicorn app.main:app --reload
+python -m uvicorn main:app --reload
